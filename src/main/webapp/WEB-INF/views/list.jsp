@@ -10,11 +10,15 @@
 	<div id="kyselyt">
 		<h1>Kyselylista:</h1>
 		<table>
+			<tr>
+				<th>KYSELYN NIMI</th>
+				<th>KYSELYN KUVAUS</th>
+			</tr>
 			<c:forEach var="kysely" items="${kyselyt}" varStatus="status">
-				<li>
-					<td><c:out value="${kysely.kyselyName}" default="-----" /></td>
-					<td><c:out value="${kysely.kyselyDesc}" default="-----" /></td>
-				</li>
+			<tr>
+				<td><c:out value="${kysely.kyselyName}" default="-----" /></td>
+				<td><c:out value="${kysely.kyselyDesc}" default="-----" /></td>
+			</tr>
 			</c:forEach>
 		</table>
 	</div>
