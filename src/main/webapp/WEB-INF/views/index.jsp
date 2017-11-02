@@ -13,8 +13,11 @@
 	tietokannan avulla. </p>
 	<h3>Linkit:</h3>
 	<p>
-		<a href="kyselyt/uusi">Uusi kysely</a><br>
+		<a href="kyselyt/uusi">Uusi kysely</a>
+		<br>
 		<a href="kyselyt/lista">Listaa kyselyt</a>
+		<br>
+		<a href="kyselyt/lista.json">hae jsonina kaikki kyselyt</a>
 	</p>
 </body>
 </html>
