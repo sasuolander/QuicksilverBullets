@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.hh.swd.projekti.kysely.bean.Kysely;
 import fi.hh.swd.projekti.kysely.dao.KyselyDAO;
@@ -50,6 +51,12 @@ public class KyselyController {
 		List<Kysely> kyselyt = dao.kyselyGetAll();
 		model.addAttribute("kyselyt", kyselyt);
 		return "/list";
+	}
+	
+	@RequestMapping(value="lista.json", method=RequestMethod.GET)
+	public @ResponseBody List<Kysely> haeKyselytjson(){
+		List<Kysely> kyselyt = dao.kyselyGetAll();
+		return kyselyt;
 	}
 
 }
