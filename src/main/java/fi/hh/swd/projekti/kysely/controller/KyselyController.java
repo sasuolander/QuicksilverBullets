@@ -55,8 +55,8 @@ public class KyselyController {
 	
 	@RequestMapping(value="lista.json", method=RequestMethod.GET)
 	public @ResponseBody List<Kysely> haeKyselytjson(){
-		List<Kysely> kyselyt = dao.kyselyGetAll();
-		return kyselyt;
+		List<Kysely> kyselytjson = dao.kyselyGetAll();
+		return kyselytjson ;
 	}
 
 }
