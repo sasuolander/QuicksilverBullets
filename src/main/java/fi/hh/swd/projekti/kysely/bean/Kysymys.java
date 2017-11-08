@@ -1,15 +1,17 @@
 package fi.hh.swd.projekti.kysely.bean;
 
-public class Kysymys {
+public class Kysymys extends Kysely {
 	private int kysymysId;
 	private String kysymys;
 	
 	public Kysymys() {
+		super.getKyselyId();
 		kysymysId = 0;
 		kysymys = null;
 	}
 	
 	public Kysymys(int kysymysId, String kysymys) {
+		super();
 		this.kysymysId = kysymysId;
 		this.kysymys = kysymys;
 	}
