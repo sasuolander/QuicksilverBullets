@@ -13,6 +13,7 @@ public class VastausRowMapper implements RowMapper<Vastaus> {
 		Vastaus vastaus = new Vastaus();
 		vastaus.setVastausId(rs.getInt("vastausId"));
 		vastaus.setVastaus(rs.getString("vastaus"));
+		vastaus.setKysymysId(rs.getInt("kysymysId"));
 		
 		return vastaus;
 	}
