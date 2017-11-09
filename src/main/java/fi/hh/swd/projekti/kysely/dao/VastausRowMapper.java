@@ -11,7 +11,7 @@ public class VastausRowMapper implements RowMapper<Vastaus> {
 
 	public Vastaus mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Vastaus vastaus = new Vastaus();
-		vastaus.setVastausId(rs.getInt("vastausId"));
+		vastaus.setVastausId(rs.getInt("vastausid"));//muutin vastausid koska taulussa vastausid ei Id :)
 		vastaus.setVastaus(rs.getString("vastaus"));
 		vastaus.setKysymysId(rs.getInt("kysymysId"));
 		

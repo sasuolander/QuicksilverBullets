@@ -48,11 +48,11 @@ public void kysymysSave(Kysymys kysymys) {
 		kysymys.setKysymysId(idHolder.getKey().intValue());
 	}
 
-	public List<Kysymys> kysymysGetAll( int kyselyId ) {
-		String sql = "SELECT kysymysId, kysymys, kyselyId FROM kysymys WHERE kyselyId = ?";
-		Object[] parametrit = new Object[] { kyselyId };
+	//Tätä muokkaan (poistin id parametrin, muutin sql lausetta)
+	public List<Kysymys> kysymysGetAll() {
+		String sql = "SELECT kysymysid, kysymys, kyselyId FROM kysymys";// WHERE kyselyId = ?;
 		RowMapper<Kysymys> mapper = new KysymysRowMapper();
-		List<Kysymys> kysymykset = jdbcTemplate.query(sql, parametrit, mapper);
+		List<Kysymys> kysymykset = jdbcTemplate.query(sql, mapper);
 		return kysymykset;
 	}
 	
