@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,9 +28,9 @@ public class VastausControllerRest {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(value="vastausJson", method=RequestMethod.GET)
-	public @ResponseBody List<Vastaus> haeVastausjson(){
-		List<Vastaus> vastausjson = dao.vastausGetAll();
+	@RequestMapping(value="vastaus", method=RequestMethod.GET)
+	public @ResponseBody List<Vastaus> haeVastausjson(@PathVariable (value="kysymysId") int kysymysId){
+		List<Vastaus> vastausjson = dao.vastausGetAll(kysymysId);
 		return vastausjson;
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,9 +28,9 @@ public class KysymysControllerRest {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(value="kysymyksetJson", method=RequestMethod.GET)
-	public @ResponseBody List<Kysymys> haeKysymyksetjson(){
-		List<Kysymys> kysymysjson = dao.kysymysGetAll();
+	@RequestMapping(value="kysymykset/{kyselyId}", method=RequestMethod.GET)
+	public @ResponseBody List<Kysymys> haeKysymyksetjson(@PathVariable (value="kyselyId") int kyselyId){
+		List<Kysymys> kysymysjson = dao.kysymysGetAll(kyselyId);
 		return kysymysjson;
 	}
 }
