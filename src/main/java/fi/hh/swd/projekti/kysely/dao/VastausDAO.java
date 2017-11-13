@@ -48,9 +48,10 @@ public void vastausSave(Vastaus vastaus) {
 		vastaus.setVastausId(idHolder.getKey().intValue());
 	}
 
-	public List<Vastaus> vastausGetAll( int kysymysId ) {
+	//Tätä muutan(poistin id parametrin, muutin sql lausetta)
+	public List<Vastaus> vastausGetAll( int kysymysId) {
 		String sql = "SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE kysymysId = ?";
-		Object[] parametrit = new Object[] { kysymysId };
+		Object [] parametrit = new Object [] {kysymysId};
 		RowMapper<Vastaus> mapper = new VastausRowMapper();
 		List<Vastaus> vastaukset = jdbcTemplate.query(sql, parametrit, mapper);
 		return vastaukset;
