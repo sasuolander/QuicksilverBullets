@@ -1,3 +1,9 @@
+
+# applen tiedosto jota muut eivät tarvitse.
+.DS_Store
+
+# tietokanta yhteys tiedot, luodaan paikallisesti jos on tarvetta
+db_connection.properties
 # Created by https://www.gitignore.io/api/java,maven,eclipse
 
 ### Eclipse ###
