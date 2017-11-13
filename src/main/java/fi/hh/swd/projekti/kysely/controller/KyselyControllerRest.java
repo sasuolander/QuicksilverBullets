@@ -14,7 +14,7 @@ import fi.hh.swd.projekti.kysely.bean.Kysely;
 import fi.hh.swd.projekti.kysely.dao.KyselyDAO;
 
 @RestController
-@RequestMapping (value="/kyselytRest")
+@RequestMapping (value="/api")
 public class KyselyControllerRest {
 	
 	@Inject
@@ -29,7 +29,7 @@ public class KyselyControllerRest {
 	}
 
 	
-	@RequestMapping(value="lista.json", method=RequestMethod.GET)
+	@RequestMapping(value="kyselyt", method=RequestMethod.GET)
 	public @ResponseBody List<Kysely> haeKyselytjson(){
 		List<Kysely> kyselytjson = dao.kyselyGetAll();
 		return kyselytjson ;

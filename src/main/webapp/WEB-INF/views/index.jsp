@@ -17,11 +17,11 @@
 		<br>
 		<a href="kyselyt/lista">Listaa kyselyt</a>
 		<br>
-		<a href="kyselytRest/lista.json">hae jsonina kaikki kyselyt</a>
+		<a href="api/kyselyt">hae jsonina kaikki kyselyt</a>
 		<br>
-		<a href="kysymysRest/kysymykset">json kysymykset</a>
+		<a href="api/kysymykset/1">json kysymykset</a>
 		<br>
-		<a href="vastausRest/vastaus">json vastaukset</a>
+		<a href="api/vastaukset/1">json vastaukset</a>
 	</p>
 </body>
 </html>

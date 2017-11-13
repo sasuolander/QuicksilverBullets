@@ -14,7 +14,7 @@ import fi.hh.swd.projekti.kysely.bean.Vastaus;
 import fi.hh.swd.projekti.kysely.dao.VastausDAO;
 
 @RestController
-@RequestMapping(value="/vastausRest")
+@RequestMapping(value="/api")
 public class VastausControllerRest {
 	
 	@Inject
@@ -28,7 +28,7 @@ public class VastausControllerRest {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(value="vastaus/{kysymysId}", method=RequestMethod.GET)
+	@RequestMapping(value="vastaukset/{kysymysId}", method=RequestMethod.GET)
 	public @ResponseBody List<Vastaus> haeVastausjson(@PathVariable (value="kysymysId") int kysymysId){
 		List<Vastaus> vastausjson = dao.vastausGetAll(kysymysId);
 		return vastausjson;

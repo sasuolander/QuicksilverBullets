@@ -14,7 +14,7 @@ import fi.hh.swd.projekti.kysely.bean.Kysymys;
 import fi.hh.swd.projekti.kysely.dao.KysymysDAO;
 
 @RestController
-@RequestMapping(value="/kysymysRest")
+@RequestMapping(value="/api")
 public class KysymysControllerRest {
 	
 	@Inject
