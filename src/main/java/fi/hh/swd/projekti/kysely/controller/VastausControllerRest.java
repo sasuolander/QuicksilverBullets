@@ -28,7 +28,7 @@ public class VastausControllerRest {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(value="vastaus", method=RequestMethod.GET)
+	@RequestMapping(value="vastaus/{kysymysId}", method=RequestMethod.GET)
 	public @ResponseBody List<Vastaus> haeVastausjson(@PathVariable (value="kysymysId") int kysymysId){
 		List<Vastaus> vastausjson = dao.vastausGetAll(kysymysId);
 		return vastausjson;
