@@ -13,7 +13,7 @@ import fi.hh.swd.projekti.kysely.bean.Vastaus;
 
 public class VastausRowMapper implements RowMapper<Kysymys> {
 
-	public Vastaus mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public Kysymys mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Vastaus vastaus = new Vastaus();
 		List<Vastaus> vastaukset= new ArrayList<Vastaus>();
 		vastaus.setVastausId(rs.getInt("vastausId"));

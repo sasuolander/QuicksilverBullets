@@ -70,6 +70,7 @@ public class MainController {
 	
 	@RequestMapping(value="uusiKysymys", method=RequestMethod.POST)
 	public String createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys, Model model){
+		
 		daoKysymys.kysymysSave(kysymys);
 		List<Kysymys> kysymykset = daoKysymys.kysymysGetAll(kysymys.getKyselyId());
 		model.addAttribute("kysymykset", kysymykset);

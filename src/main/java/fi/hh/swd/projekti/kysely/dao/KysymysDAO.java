@@ -53,19 +53,19 @@ public void kysymysSave(final int kyselyId, Kysymys kysymys) {
 	}
 
 	//Tätä muokkaan (poistin id parametrin, muutin sql lausetta)
-	public List<Kysymys> kysymysGetAll(int kyselyId) {
+	public List<Kysely> kysymysGetAll(int kyselyId) {
 		String sql = "SELECT kysymysId, kysymys, kyselyId FROM kysymys WHERE kyselyId = ?";
 		Object [] parametrit = new Object [] {kyselyId};
-		RowMapper<Kysymys> mapper = new KysymysRowMapper();
-		List<Kysymys> kysymykset = jdbcTemplate.query(sql, parametrit, mapper);
+		RowMapper<Kysely> mapper = new KysymysRowMapper();
+		List<Kysely> kysymykset = jdbcTemplate.query(sql, parametrit, mapper);
 		return kysymykset;
 	}
 	
-	public Kysymys kysymysGetOne( int kysymysId ) {
+	public Kysely kysymysGetOne( int kysymysId ) {
 		String sql = "SELECT kysymysId, kysymys, kyselyId FROM kysymys WHERE kysymysId = ?";
 		Object[] parametrit = new Object[] { kysymysId };
-		RowMapper<Kysymys> mapper = new KysymysRowMapper();
-		Kysymys kysymys = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		RowMapper<Kysely> mapper = new KysymysRowMapper();
+		Kysely kysymys = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return kysymys;
 	}
 
