@@ -5,7 +5,6 @@ public class Vastaus extends Kysymys {
 	private String vastaus;
 	
 	public Vastaus() {
-		super.getKysymysId();
 		vastausId = 0;
 		vastaus = null;
 	}

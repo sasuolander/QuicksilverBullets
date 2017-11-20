@@ -1,11 +1,22 @@
 package fi.hh.swd.projekti.kysely.bean;
 
-public class Kysymys extends Kysely {
+import java.util.List;
+
+public class Kysymys  {
 	private int kysymysId;
 	private String kysymys;
+	private List<Vastaus> vastaukset;
 	
+	
+	public List<Vastaus> getVastaukset() {
+		return vastaukset;
+	}
+
+	public void setVastaukset(List<Vastaus> vastaukset) {
+		this.vastaukset = vastaukset;
+	}
+
 	public Kysymys() {
-		super.getKyselyId();
 		kysymysId = 0;
 		kysymys = null;
 	}
@@ -14,6 +25,12 @@ public class Kysymys extends Kysely {
 		super();
 		this.kysymysId = kysymysId;
 		this.kysymys = kysymys;
+	}
+	
+	public Kysymys(int kysymysId,List<Vastaus> vastaukset) {
+		super();
+		this.kysymysId = kysymysId;
+		this.vastaukset = vastaukset;
 	}
 
 	public int getKysymysId() {

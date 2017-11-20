@@ -1,10 +1,23 @@
 package fi.hh.swd.projekti.kysely.bean;
 
+import java.util.List;
+
 public class Kysely {
 	private int kyselyId;
 	private String kyselyName;
 	private String kyselyDesc;
+	private List<Kysymys> kysymykset;
 	
+	public List<Kysymys> getKysymykset() {
+		return kysymykset;
+	}
+
+	public void setKysymykset(List<Kysymys> kysymykset) {
+		this.kysymykset = kysymykset;
+	}
+	
+	
+
 	public Kysely() {
 		kyselyId = 0;
 		kyselyName = null;
@@ -15,6 +28,18 @@ public class Kysely {
 		this.kyselyId = kyselyId;
 		this.kyselyName = kyselyName;
 		this.kyselyDesc = kyselyDesc;
+	}
+	
+	public Kysely(int kyselyId, String kyselyName, String kyselyDesc, List<Kysymys> kysymykset) {
+		this.kyselyId = kyselyId;
+		this.kyselyName = kyselyName;
+		this.kyselyDesc = kyselyDesc;
+		this.kysymykset = kysymykset;
+	}
+	
+	public Kysely(int kyselyId, List<Kysymys> kysymykset) {
+		this.kyselyId = kyselyId;
+		this.kysymykset = kysymykset;
 	}
 
 	public int getKyselyId() {

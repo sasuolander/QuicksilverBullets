@@ -3,6 +3,7 @@ package fi.hh.swd.projekti.kysely.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import fi.hh.swd.projekti.kysely.bean.Kysely;
 import fi.hh.swd.projekti.kysely.bean.Kysymys;
 
 @Repository
@@ -30,17 +32,19 @@ public class KysymysDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-public void kysymysSave(Kysymys kysymys) {
+public void kysymysSave(final int kyselyId, Kysymys kysymys) {
 		final String sql = "INSERT INTO kysymys (kysymys, kyselyId) values(?,?)";
-		final String kysymyss = kysymys.getKysymys();
-		final int kyselyId = kysymys.getKyselyId();
+		List<Kysymys>kysymykset= new ArrayList();
+		kysymykset.add(kysymys);
+		Kysely kysely =  new Kysely(kyselyId,kysymykset);
+		final String kysymysName= kysely.getKysymykset().get(0).getKysymys();
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
 					Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql,
 						new String[] { "kysymysId" });
-				ps.setString(1, kysymyss);
+				ps.setString(1, kysymysName);
 				ps.setInt(2, kyselyId);
 				return ps;
 			}
