@@ -31,9 +31,10 @@ public class KysymysDAO {
 	}
 
 public void kysymysSave(Kysymys kysymys) {
-		final String sql = "INSERT INTO kysymys (kysymys, kyselyId) values(?,?)";
+		final String sql = "INSERT INTO kysymys (kysymys, kyselyId, kysymysType) values(?,?,?)";
 		final String kysymyss = kysymys.getKysymys();
 		final int kyselyId = kysymys.getKyselyId();
+		final String kysymysType = kysymys.getKysymysType();
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
@@ -42,6 +43,7 @@ public void kysymysSave(Kysymys kysymys) {
 						new String[] { "kysymysId" });
 				ps.setString(1, kysymyss);
 				ps.setInt(2, kyselyId);
+				ps.setString(3, kysymysType);
 				return ps;
 			}
 		}, idHolder);
@@ -50,7 +52,7 @@ public void kysymysSave(Kysymys kysymys) {
 
 	//Tätä muokkaan (poistin id parametrin, muutin sql lausetta)
 	public List<Kysymys> kysymysGetAll(int kyselyId) {
-		String sql = "SELECT kysymysId, kysymys, kyselyId FROM kysymys WHERE kyselyId = ?";
+		String sql = "SELECT kysymysId, kysymys, kyselyId, kysymysType FROM kysymys WHERE kyselyId = ?";
 		Object [] parametrit = new Object [] {kyselyId};
 		RowMapper<Kysymys> mapper = new KysymysRowMapper();
 		List<Kysymys> kysymykset = jdbcTemplate.query(sql, parametrit, mapper);
@@ -58,7 +60,7 @@ public void kysymysSave(Kysymys kysymys) {
 	}
 	
 	public Kysymys kysymysGetOne( int kysymysId ) {
-		String sql = "SELECT kysymysId, kysymys, kyselyId FROM kysymys WHERE kysymysId = ?";
+		String sql = "SELECT kysymysId, kysymys, kyselyId, kysymysType FROM kysymys WHERE kysymysId = ?";
 		Object[] parametrit = new Object[] { kysymysId };
 		RowMapper<Kysymys> mapper = new KysymysRowMapper();
 		Kysymys kysymys = jdbcTemplate.queryForObject(sql, parametrit, mapper);
