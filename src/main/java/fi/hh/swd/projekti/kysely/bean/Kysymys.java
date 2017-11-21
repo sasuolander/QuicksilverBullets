@@ -6,7 +6,8 @@ public class Kysymys  {
 	private int kysymysId;
 	private String kysymys;
 	private List<Vastaus> vastaukset;
-	
+	private String kysymysType;
+
 	
 	public List<Vastaus> getVastaukset() {
 		return vastaukset;
@@ -19,12 +20,16 @@ public class Kysymys  {
 	public Kysymys() {
 		kysymysId = 0;
 		kysymys = null;
+		kysymysType = null;
+		
 	}
 	
-	public Kysymys(int kysymysId, String kysymys) {
+	public Kysymys(int kysymysId, String kysymys, String kysymysType) {
 		super();
 		this.kysymysId = kysymysId;
 		this.kysymys = kysymys;
+		this.kysymysType = kysymysType;
+		
 	}
 	
 	public Kysymys(int kysymysId,List<Vastaus> vastaukset) {
@@ -52,6 +57,14 @@ public class Kysymys  {
 	@Override
 	public String toString() {
 		return "Kysymys [kysymysId=" + kysymysId + ", kysymys=" + kysymys + "]";
+	}
+
+	public String getKysymysType() {
+		return kysymysType;
+	}
+
+	public void setKysymysType(String kysymysType) {
+		this.kysymysType = kysymysType;
 	}
 	
 }

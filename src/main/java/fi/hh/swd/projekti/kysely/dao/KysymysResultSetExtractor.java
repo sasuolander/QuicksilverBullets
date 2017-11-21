@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 import fi.hh.swd.projekti.kysely.bean.Kysely;
+import fi.hh.swd.projekti.kysely.bean.Kysymys;
 import fi.hh.swd.projekti.kysely.bean.Vastaus;
 
 public class KysymysResultSetExtractor implements ResultSetExtractor{
@@ -18,9 +19,14 @@ public class KysymysResultSetExtractor implements ResultSetExtractor{
 		while(rs.next()){
 			Integer id =rs.getInt("kyselyId");
 			kysely = map.get(id);
-			if(){
+			if(kysely==null){
 				
+				int kysymysId =rs.getInt("kysymysId");
+				String kysymys = rs.getString("kysymys");
+				String kysymysType = rs.getString("kysymysType");
+				Kysymys kysymys = new Kysymys(kysymysId, kysymysType);
 			}
+			
 		}
 		
 		
