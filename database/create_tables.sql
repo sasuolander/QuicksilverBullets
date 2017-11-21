@@ -1,4 +1,4 @@
-/*CREATE DATABASE projekti tämä ei toimi koulun palvelimissa kun ei ole oikeuksia.*/
+CREATE DATABASE projekti /*tämä kohta ei toimi koulun palvelimissa koska ei ole oikeuksia luoda uutta tietokantaa.*/
 CREATE TABLE kysely(
 kyselyId smallint(6) not null auto_increment PRIMARY KEY,
 kyselyName varchar(250) not null,
