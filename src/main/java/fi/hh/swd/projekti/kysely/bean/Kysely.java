@@ -2,6 +2,8 @@ package fi.hh.swd.projekti.kysely.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Kysely {
 	private int kyselyId;
 	private String kyselyName;

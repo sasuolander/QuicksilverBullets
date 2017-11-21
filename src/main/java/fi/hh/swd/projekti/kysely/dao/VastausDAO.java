@@ -58,7 +58,7 @@ public class VastausDAO {
 	}
 	
 	public Kysymys vastausGetOne( int vastausId ) {
-		String sql = "SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE vastausId = ?";
+		String sql = "	SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE vastausId = ?";
 		Object[] parametrit = new Object[] { vastausId };
 		RowMapper<Kysymys> mapper = new VastausRowMapper();
 		Kysymys vastaus = jdbcTemplate.queryForObject(sql, parametrit, mapper);

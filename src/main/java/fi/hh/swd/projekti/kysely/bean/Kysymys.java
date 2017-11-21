@@ -2,11 +2,13 @@ package fi.hh.swd.projekti.kysely.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Kysymys  {
 	private int kysymysId;
 	private String kysymys;
-	private List<Vastaus> vastaukset;
 	private String kysymysType;
+	private List<Vastaus> vastaukset;
 
 	
 	
