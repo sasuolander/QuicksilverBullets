@@ -8,15 +8,9 @@ public class Kysely {
 	private String kyselyDesc;
 	private List<Kysymys> kysymykset;
 	
-	public List<Kysymys> getKysymykset() {
-		return kysymykset;
+	public void lisaa(Kysymys kysymys){
+		this.kysymykset.add(kysymys);
 	}
-
-	public void setKysymykset(List<Kysymys> kysymykset) {
-		this.kysymykset = kysymykset;
-	}
-	
-	
 
 	public Kysely() {
 		kyselyId = 0;
@@ -65,10 +59,17 @@ public class Kysely {
 	public void setKyselyDesc(String kyselyDesc) {
 		this.kyselyDesc = kyselyDesc;
 	}
+	
+	public List<Kysymys> getKysymykset() {
+		return kysymykset;
+	}
+
+	public void setKysymykset(List<Kysymys> kysymykset) {
+		this.kysymykset = kysymykset;
+	}
 
 	@Override
 	public String toString() {
 		return "Kysely [kyselyId=" + kyselyId + ", kyselyName=" + kyselyName + ", kyselyDesc=" + kyselyDesc + "]";
-	}
-	
+	}	
 }

@@ -1,6 +1,6 @@
 package fi.hh.swd.projekti.kysely.bean;
 
-public class Vastaus extends Kysymys {
+public class Vastaus {
 	private int vastausId;
 	private String vastaus;
 	private String vastausType;

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import fi.hh.swd.projekti.kysely.bean.Kysely;
 import fi.hh.swd.projekti.kysely.bean.Kysymys;
+import fi.hh.swd.projekti.kysely.dao.KysymysResultSetExtractor;
 
 @Repository
 public class KysymysDAO {
@@ -60,8 +62,8 @@ public void kysymysSave(final int kyselyId, Kysymys kysymys) {
 	public List<Kysely> kysymysGetAll(int kyselyId) {
 		String sql = "SELECT kysymysId, kysymys, kyselyId, kysymysType FROM kysymys WHERE kyselyId = ?";
 		Object [] parametrit = new Object [] {kyselyId};
-		RowMapper<Kysely> mapper = new KysymysRowMapper();
-		List<Kysely> kysymykset = jdbcTemplate.query(sql, parametrit, mapper);
+		KysymysResultSetExtractor mapper = new KysymysResultSetExtractor();
+		List<Kysely> kysymykset = jdbcTemplate.query(sql, parametrit,mapper);
 		return kysymykset;
 	}
 	

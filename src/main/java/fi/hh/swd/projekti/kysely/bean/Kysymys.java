@@ -9,14 +9,11 @@ public class Kysymys  {
 	private String kysymysType;
 
 	
-	public List<Vastaus> getVastaukset() {
-		return vastaukset;
+	
+	public void lisaa(Vastaus vastaus){
+		this.vastaukset.add(vastaus);
 	}
-
-	public void setVastaukset(List<Vastaus> vastaukset) {
-		this.vastaukset = vastaukset;
-	}
-
+	
 	public Kysymys() {
 		kysymysId = 0;
 		kysymys = null;
@@ -67,4 +64,11 @@ public class Kysymys  {
 		this.kysymysType = kysymysType;
 	}
 	
+	public List<Vastaus> getVastaukset() {
+		return vastaukset;
+	}
+	
+	public void setVastaukset(List<Vastaus> vastaukset) {
+		this.vastaukset = vastaukset;
+	}
 }

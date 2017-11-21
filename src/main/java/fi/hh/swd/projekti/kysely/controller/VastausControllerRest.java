@@ -32,13 +32,15 @@ public class VastausControllerRest {
 	
 	@RequestMapping(value="vastaukset/{kysymysId}", method=RequestMethod.GET)
 	public @ResponseBody List<Kysymys> haeVastausjson(@PathVariable (value="kysymysId") int kysymysId){
-		List<Kysymys> vastausjson = dao.vastausGetAll(kysymysId);
-		return vastausjson;
+		List<Kysymys> vastaus = dao.vastausGetAll(kysymysId);
+		return vastaus;
 	}
 	
 	@RequestMapping(value="lisaa", method=RequestMethod.POST)
-	public @ResponseBody Vastaus lisaaVastaus(@RequestBody Vastaus vastaus){
-		dao.vastausSave(vastaus);
+	public @ResponseBody Vastaus lisaaVastaus(@RequestBody Kysymys kysymys){
+		int kysymysId = kysymys.getKysymysId();
+		Vastaus vastaus = kysymys.getVastaukset().get(0);
+		dao.vastausSave(kysymysId, vastaus);
 		return vastaus;
 	}
 

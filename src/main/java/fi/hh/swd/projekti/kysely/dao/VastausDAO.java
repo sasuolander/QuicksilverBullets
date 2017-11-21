@@ -31,10 +31,9 @@ public class VastausDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-public void vastausSave(Vastaus vastaus) {
+	public void vastausSave(final int kysymysId,Vastaus vastaus) {
 		final String sql = "INSERT INTO vastaus (vastaus, kysymysId) values(?,?)";
 		final String vastauss = vastaus.getVastaus();
-		final int kysymysId = vastaus.getKysymysId();
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
@@ -53,7 +52,7 @@ public void vastausSave(Vastaus vastaus) {
 	public List<Kysymys> vastausGetAll( int kysymysId) {
 		String sql = "SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE kysymysId = ?";
 		Object [] parametrit = new Object [] {kysymysId};
-		RowMapper<Kysymys> mapper = new VastausRowMapper();
+		VastausResultSetExtractor mapper = new VastausResultSetExtractor();
 		List<Kysymys> vastaukset = jdbcTemplate.query(sql, parametrit, mapper);
 		return vastaukset;
 	}
@@ -65,5 +64,4 @@ public void vastausSave(Vastaus vastaus) {
 		Kysymys vastaus = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return vastaus;
 	}
-
 }
