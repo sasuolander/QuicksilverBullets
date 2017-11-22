@@ -69,18 +69,22 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="uusiKysymys", method=RequestMethod.POST)
-	public String createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys, Model model){
-		daoKysymys.kysymysSave(kysymys);
-		List<Kysymys> kysymykset = daoKysymys.kysymysGetAll(kysymys.getKyselyId());
+	public String createKysymys(@ModelAttribute(value="kysymys") Kysely kysely, Model model){
+		int kyselyId = kysely.getKyselyId();
+		Kysymys kysymys = kysely.getKysymykset().get(0);
+		daoKysymys.kysymysSave(kyselyId,kysymys);
+		List<Kysely> kysymykset = daoKysymys.kysymysGetAll(kyselyId);
 		model.addAttribute("kysymykset", kysymykset);
 		return "/list";
 		
 	}
 	
 	@RequestMapping(value="uusiVastaus", method=RequestMethod.POST)
-	public String createVastaus(@ModelAttribute(value="vastaus") Vastaus vastaus, Model model){
-		daoVastaus.vastausSave(vastaus);
-		List<Vastaus> vastaukset = daoVastaus.vastausGetAll(vastaus.getVastausId());
+	public String createVastaus(@ModelAttribute(value="vastaus") Kysymys kysymys, Model model){
+		int kysymysId = kysymys.getKysymysId();
+		Vastaus vastaus = kysymys.getVastaukset().get(0);
+		daoVastaus.vastausSave(kysymysId, vastaus);
+		List<Kysymys> vastaukset = daoVastaus.vastausGetAll(vastaus.getVastausId());
 		model.addAttribute("vastaukset", vastaukset);
 		return "/list";
 		

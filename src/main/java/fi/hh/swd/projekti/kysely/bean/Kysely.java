@@ -1,10 +1,19 @@
 package fi.hh.swd.projekti.kysely.bean;
 
+import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Kysely {
 	private int kyselyId;
 	private String kyselyName;
 	private String kyselyDesc;
+	private List<Kysymys> kysymykset;
 	
+	public void lisaa(Kysymys kysymys){
+		this.kysymykset.add(kysymys);
+	}
+
 	public Kysely() {
 		kyselyId = 0;
 		kyselyName = null;
@@ -15,6 +24,18 @@ public class Kysely {
 		this.kyselyId = kyselyId;
 		this.kyselyName = kyselyName;
 		this.kyselyDesc = kyselyDesc;
+	}
+	
+	public Kysely(int kyselyId, String kyselyName, String kyselyDesc, List<Kysymys> kysymykset) {
+		this.kyselyId = kyselyId;
+		this.kyselyName = kyselyName;
+		this.kyselyDesc = kyselyDesc;
+		this.kysymykset = kysymykset;
+	}
+	
+	public Kysely(int kyselyId, List<Kysymys> kysymykset) {
+		this.kyselyId = kyselyId;
+		this.kysymykset = kysymykset;
 	}
 
 	public int getKyselyId() {
@@ -40,10 +61,17 @@ public class Kysely {
 	public void setKyselyDesc(String kyselyDesc) {
 		this.kyselyDesc = kyselyDesc;
 	}
+	
+	public List<Kysymys> getKysymykset() {
+		return kysymykset;
+	}
+
+	public void setKysymykset(List<Kysymys> kysymykset) {
+		this.kysymykset = kysymykset;
+	}
 
 	@Override
 	public String toString() {
 		return "Kysely [kyselyId=" + kyselyId + ", kyselyName=" + kyselyName + ", kyselyDesc=" + kyselyDesc + "]";
-	}
-	
+	}	
 }
