@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import fi.hh.swd.projekti.kysely.bean.Kysely;
 import fi.hh.swd.projekti.kysely.bean.Kysymys;
+import fi.hh.swd.projekti.kysely.bean.Valinta;
 import fi.hh.swd.projekti.kysely.dao.KysymysResultSetExtractor;
 
 @Repository
@@ -73,6 +74,14 @@ public void kysymysSave(final int kyselyId, Kysymys kysymys) {
 		RowMapper<Kysely> mapper = new KysymysRowMapper();
 		Kysely kysymys = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return kysymys;
+	}
+	
+	public List<Valinta> valintaGetAll( int kysymysId ) {
+		String sql = "SELECT valintaId, valintaName FROM valinta WHERE kysymysId = ?";
+		Object [] parametrit = new Object [] {kysymysId};
+		ValintaResultSetExtractor mapper = new ValintaResultSetExtractor();
+		List<Valinta> valinnat = jdbcTemplate.query(sql, parametrit, mapper);
+		return valinnat;
 	}
 
 }

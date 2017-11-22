@@ -9,11 +9,16 @@ public class Kysymys  {
 	private String kysymys;
 	private String kysymysType;
 	private List<Vastaus> vastaukset;
+	private List<Valinta> valinnat;
 
 	
 	
 	public void lisaa(Vastaus vastaus){
 		this.vastaukset.add(vastaus);
+	}
+	
+	public void lisaa(Valinta valinta) {
+		this.valinnat.add(valinta);
 	}
 	
 	public Kysymys() {
@@ -73,4 +78,13 @@ public class Kysymys  {
 	public void setVastaukset(List<Vastaus> vastaukset) {
 		this.vastaukset = vastaukset;
 	}
+
+	public List<Valinta> getValinnat() {
+		return valinnat;
+	}
+
+	public void setValinnat(List<Valinta> valinnat) {
+		this.valinnat = valinnat;
+	}
+
 }
