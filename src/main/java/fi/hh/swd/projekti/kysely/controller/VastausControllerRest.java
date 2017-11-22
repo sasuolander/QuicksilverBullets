@@ -36,7 +36,7 @@ public class VastausControllerRest {
 		return vastaus;
 	}
 	
-	@RequestMapping(value="lisaa", method=RequestMethod.POST)
+	@RequestMapping(value="lisaaVastaus", method=RequestMethod.POST)
 	public @ResponseBody Vastaus lisaaVastaus(@RequestBody Kysymys kysymys){
 		int kysymysId = kysymys.getKysymysId();
 		Vastaus vastaus = kysymys.getVastaukset().get(0);
