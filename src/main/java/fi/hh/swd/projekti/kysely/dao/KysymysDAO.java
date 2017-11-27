@@ -77,7 +77,7 @@ public void kysymysSave(final int kyselyId, Kysymys kysymys) {
 	}
 	
 	public List<Valinta> valintaGetAll( int kysymysId ) {
-		String sql = "SELECT valintaId, valintaName FROM valinta WHERE kysymysId = ?";
+		String sql = "SELECT valintaId, valintaName, kysymysId FROM valinta WHERE kysymysId = ?";
 		Object [] parametrit = new Object [] {kysymysId};
 		ValintaResultSetExtractor mapper = new ValintaResultSetExtractor();
 		List<Valinta> valinnat = jdbcTemplate.query(sql, parametrit, mapper);

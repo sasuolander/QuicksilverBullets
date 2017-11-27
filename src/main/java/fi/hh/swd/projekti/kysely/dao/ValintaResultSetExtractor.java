@@ -27,7 +27,7 @@ public class ValintaResultSetExtractor implements ResultSetExtractor {
 				map.put(id, kysymys);
 			}
 			kysymys.setValinnat(valinnat);
-			Valinta valinta = new Valinta(rs.getInt("valintaId"), rs.getString("valinta"));
+			Valinta valinta = new Valinta(rs.getInt("valintaId"), rs.getString("valintaName"));
 
 			 kysymys.lisaa(valinta);
 		}

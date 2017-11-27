@@ -16,3 +16,9 @@ vastausId smallint(6) auto_increment PRIMARY KEY not null,
 vastaus varchar(250) not null,
 kysymysId smallint(6) not null,
 FOREIGN KEY (kysymysId) REFERENCES kysymys(kysymysId));
+
+CREATE TABLE valinta(
+valintaId smallint(6) auto_increment PRIMARY KEY not null,
+valintaName varchar(250) not null,
+kysymysId smallint(6) not null,
+FOREIGN KEY (kysymysId) REFERENCES kysymys(kysymysId));
