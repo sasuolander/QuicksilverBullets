@@ -50,9 +50,8 @@ public class KysymysControllerRest {
 		}
 		return kysymysjson;
 }
-}
-=======
-	@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
+
+@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
 	public @ResponseBody Kysymys uusiKysymys(@RequestBody Kysely kysely){
 		int kyselyId = kysely.getKyselyId();
 		Kysymys kysymys = kysely.getKysymykset().get(0);
