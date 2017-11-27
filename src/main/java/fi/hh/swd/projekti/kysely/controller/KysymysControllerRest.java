@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,5 +49,15 @@ public class KysymysControllerRest {
 			}
 		}
 		return kysymysjson;
+}
+}
+=======
+	@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
+	public @ResponseBody Kysymys uusiKysymys(@RequestBody Kysely kysely){
+		int kyselyId = kysely.getKyselyId();
+		Kysymys kysymys = kysely.getKysymykset().get(0);
+		dao.kysymysSave(kyselyId, kysymys);
+		return kysymys;
+		
 	}
 }
