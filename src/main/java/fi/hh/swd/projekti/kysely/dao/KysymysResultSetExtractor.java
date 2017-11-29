@@ -26,7 +26,11 @@ public class KysymysResultSetExtractor implements ResultSetExtractor{
 			if(kysely==null){
 				kysely = new Kysely();
 				int id2 =rs.getInt("kyselyId");
+				String name2 = rs.getString("kyselyName");
+				String desc2 = rs.getString("kyselyDesc");
 				kysely.setKyselyId(id2);
+				kysely.setKyselyName(name2);
+				kysely.setKyselyDesc(desc2);
 				map.put(id,kysely);
 			}
 			kysely.setKysymykset(kysymykset);

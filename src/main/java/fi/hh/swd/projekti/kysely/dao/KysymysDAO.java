@@ -61,7 +61,7 @@ public void kysymysSave(final int kyselyId, Kysymys kysymys) {
 	//Tätä muokkaan (poistin id parametrin, muutin sql lausetta)
 
 	public List<Kysely> kysymysGetAll(int kyselyId) {
-		String sql = "SELECT kysymysId, kysymys, kyselyId, kysymysType FROM kysymys WHERE kyselyId = ?";
+		String sql = "SELECT ksm.kysymysId, ksm.kysymys, ksm.kyselyId, ksm.kysymysType, ksl.kyselyName, ksl.kyselyDesc FROM kysymys ksm JOIN kysely ksl ON ksm.kyselyId=ksl.kyselyId WHERE ksm.kyselyId = ?";
 		Object [] parametrit = new Object [] {kyselyId};
 		KysymysResultSetExtractor mapper = new KysymysResultSetExtractor();
 		List<Kysely> kysymykset = jdbcTemplate.query(sql, parametrit,mapper);

@@ -44,7 +44,6 @@ public class KysymysControllerRest {
 				kysymys = kysymykset.get(ii);
 				System.out.println("KYSYMYS ID ON: " + kysymys.getKysymysId());
 				valinnatjson = dao.valintaGetAll(kysymys.getKysymysId());
-				
 				kysymys.setValinnat(valinnatjson);
 			}
 		}
