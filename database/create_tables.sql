@@ -22,3 +22,16 @@ valintaId smallint(6) auto_increment PRIMARY KEY not null,
 valintaName varchar(250) not null,
 kysymysId smallint(6) not null,
 FOREIGN KEY (kysymysId) REFERENCES kysymys(kysymysId));
+
+CREATE TABLE kayttaja(
+kayttajaId smallint(6) auto_increment PRIMARY KEY not null,
+kayttajaName varchar(250) not null,
+kayttajaPassword varchar(250) not null,
+kayttajaRole varchar(250) not null);
+
+CREATE TABLE kayttajanKysely(
+kayttajanKyselyId smallint(6) auto_increment PRIMARY KEY not null,
+kyselyId smallint(6) not null,
+kayttajaId smallint(6) not null,
+FOREIGN KEY (kyselyId) REFERENCES kysely(kyselyId),
+FOREIGN KEY (kayttajaId) REFERENCES kayttaja(kayttajaId));
