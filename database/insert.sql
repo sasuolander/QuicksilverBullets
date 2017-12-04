@@ -17,8 +17,9 @@ VALUES
 INSERT INTO vastaus (vastausId, vastaus, kysymysId)
 VALUES
 (1, 'En tiedä, en autoile', 1);
-(2, 'En tiedä, en autoile', 1);
-(3, 'Parkkipaikkoja ei ole lähellä, tai ne ovat kalliita', 1);
+(2, 'En tiedä, en autoile', 2);
+(3, 'Parkkipaikkoja ei ole lähellä, tai ne ovat kalliita', 3);
+(4, 'Kyllä', 4);
 
 INSERT INTO valinta (valintaId, valintaName, kysymysId)
 VALUES
