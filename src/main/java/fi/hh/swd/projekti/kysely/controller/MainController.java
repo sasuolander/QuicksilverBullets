@@ -1,5 +1,6 @@
 package fi.hh.swd.projekti.kysely.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -94,6 +95,33 @@ public class MainController {
 	public String getAll(Model model) {
 		List<Kysely> kyselyt = daoKysely.kyselyGetAll();
 		model.addAttribute("kyselyt", kyselyt);
+		return "/list";
+	}
+	
+	@RequestMapping(value="lista", method = RequestMethod.GET)
+	public String getAllVastaus(Model model) {
+		List<Vastaus> vastaukset = new ArrayList<Vastaus>();
+		List<Integer> kysymysIdList =new ArrayList<Integer>();
+		
+		
+		
+		List KyselyList= daoKysely.kyselyGetAll();
+		
+		for (int i=0;i< KyselyList.size();i++){
+			List<Kysely> kysymykset=daoKysymys.kysymysGetAll(i);
+			for (int v =0;v<kysymykset.get(0).getKysymykset().size();v++){
+				Kysymys kysymys= kysymykset.get(0).getKysymykset().get(v);
+				int id =kysymys.getKysymysId();
+				kysymysIdList.add(id); }
+			}	
+		
+		for (int i=0;i< kysymysIdList.size();i++){
+		List<Kysymys> vastausetVali = daoVastaus.vastausGetAll(i);
+		List<Vastaus>vastaukset2= vastausetVali.get(0).getVastaukset();
+		vastaukset.addAll(vastaukset2);
+		}
+		
+		model.addAttribute("vastaukset", vastaukset);
 		return "/list";
 	}
 	
