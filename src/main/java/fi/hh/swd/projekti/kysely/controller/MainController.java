@@ -25,7 +25,9 @@ public class MainController {
 
 	@Inject
 	private KyselyDAO daoKysely;
+	@Inject
 	private KysymysDAO daoKysymys;
+	@Inject
 	private VastausDAO daoVastaus;
 	
 	public KyselyDAO getKysely() {
@@ -98,31 +100,37 @@ public class MainController {
 		return "/list";
 	}
 	
-	@RequestMapping(value="lista", method = RequestMethod.GET)
+	@RequestMapping(value="listaVastaukset", method = RequestMethod.GET)
 	public String getAllVastaus(Model model) {
-		List<Vastaus> vastaukset = new ArrayList<Vastaus>();
-		List<Integer> kysymysIdList =new ArrayList<Integer>();
+		//List<Vastaus> vastaukset = new ArrayList<Vastaus>();
+		//List<Integer> kysymysIdList =new ArrayList<Integer>();
+		//List<Kysely> kysymykset = new ArrayList<Kysely>();
 		
 		
+		//List<Kysely> KyselyList= daoKysely.kyselyGetAll();
 		
-		List KyselyList= daoKysely.kyselyGetAll();
-		
-		for (int i=0;i< KyselyList.size();i++){
-			List<Kysely> kysymykset=daoKysymys.kysymysGetAll(i);
+		/*for (int i=0;i< KyselyList.size();i++){
+//null point error?!!	List<Kysely> kysymyksetvali=daoKysymys.kysymysGetAll(i+1); 
+			kysymykset.addAll(kysymyksetvali);
 			for (int v =0;v<kysymykset.get(0).getKysymykset().size();v++){
 				Kysymys kysymys= kysymykset.get(0).getKysymykset().get(v);
 				int id =kysymys.getKysymysId();
-				kysymysIdList.add(id); }
-			}	
-		
-		for (int i=0;i< kysymysIdList.size();i++){
-		List<Kysymys> vastausetVali = daoVastaus.vastausGetAll(i);
-		List<Vastaus>vastaukset2= vastausetVali.get(0).getVastaukset();
-		vastaukset.addAll(vastaukset2);
+				kysymysIdList.add(id); 
+				} 
 		}
+		for (int i=0;i< kysymysIdList.size();i++){
+			List<Kysymys> vastausetVali = daoVastaus.vastausGetAll(i+1);
+			List<Vastaus>vastaukset2= vastausetVali.get(0).getVastaukset();
+			vastaukset.addAll(vastaukset2);}*/
+		//Kysely p = kysymykset.get(0);
+		//List<Kysymys> b = kysymykset.get(0).getKysymykset();
+		//Kysymys c = kysymykset.get(0).getKysymykset().get(0);
 		
-		model.addAttribute("vastaukset", vastaukset);
-		return "/list";
+		
+		List<Vastaus> vastaukset2=daoVastaus.vastausGetAllObject();
+		
+		model.addAttribute("vastauksetObject", vastaukset2);
+		return "/vastaukset";
 	}
 	
 	@RequestMapping(value="lista.json", method=RequestMethod.GET)
