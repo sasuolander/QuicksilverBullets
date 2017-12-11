@@ -17,8 +17,6 @@
 		<br>
 		<a href="kyselyt/lista">Listaa kyselyt</a>
 		<br>
-		<a href="kyselyt/lisaaKysymys">uusi kysymys</a>
-    <br>
 		<a href="kyselyt/kysymykset">Listaa kysymykset</a>
 		<br>
 		<a href="kyselyt/listaVastaukset">Listaa vastaukset</a>

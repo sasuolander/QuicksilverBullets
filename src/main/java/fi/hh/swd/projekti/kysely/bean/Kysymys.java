@@ -10,9 +10,17 @@ public class Kysymys  {
 	private String kysymysType;
 	private List<Vastaus> vastaukset;
 	private List<Valinta> valinnat;
+	private int kyselyId;
+	
+	
+	public int getKyselyId() {
+		return kyselyId;
+	}
 
-	
-	
+	public void setKyselyId(int id) {
+		this.kyselyId= id;
+	}
+
 	public void lisaa(Vastaus vastaus){
 		this.vastaukset.add(vastaus);
 	}

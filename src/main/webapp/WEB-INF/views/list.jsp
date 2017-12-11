@@ -20,7 +20,7 @@
 				<td><c:out value="${kysely.kyselyDesc}" default="-----" /></td>
 			</tr>
 			<tr>
-				<td><a href="/Kysely/kyselyt/lisaaKysymys?kyselyId=<c:out value='${kysely.kyselyId}'/>">Lis‰‰ kysymys</a>
+				<td><a href="lisaaKysymys?kyselyId=<c:out value='${kysely.kyselyId}'/>">Lis‰‰ kysymys</a>
 			
 				</td>
 			</tr>
@@ -30,7 +30,7 @@
 		
 		
 	</div>
-	<p><a href="/Kysely/kyselyt/lisaaKysymys">Lis‰‰ kysymys</a></p>
+	
 	<p><a href="/Kysely/">Palaa alkuun</a></p>
 	
 </body>
