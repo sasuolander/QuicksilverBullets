@@ -80,9 +80,9 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
-	public String createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys, Model model){
-		daoKysymys.kysymysSave(1,kysymys);
-		List<Kysely> kysymykset = daoKysymys.kysymysGetAll(1);
+	public String createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys, @RequestParam(value="kyselyId") int kyselyId, Model model){
+		daoKysymys.kysymysSave(kyselyId ,kysymys);
+		List<Kysely> kysymykset = daoKysymys.kysymysGetAll(kyselyId);
 		model.addAttribute("kysymykset", kysymykset);
 		return "/kysymysList";
 	}
