@@ -14,7 +14,7 @@
 	<h1>
 		Lisää uusi kysely
 	</h1>
-		<form:form modelAttribute="kysely" method="post">
+		<form:form modelAttribute="kysely">
 		  	<fieldset>		
 				<legend>Kyselyn tiedot</legend>
 				<p>

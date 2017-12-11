@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.hh.swd.projekti.kysely.bean.Kysely;
@@ -53,32 +54,36 @@ public class MainController {
 		this.daoVastaus = daoVastaus;
 	}
 	
+
 	@RequestMapping(value="uusi", method=RequestMethod.GET)
 	public String getCreateForm(Model model) {
 		Kysely kyselyBasic = new Kysely();
 		kyselyBasic.setKyselyName("Input name");
 		kyselyBasic.setKyselyDesc("Input description");
 		model.addAttribute("kysely", kyselyBasic);
-		return "/form";
+		return "form";
+	}
+	@RequestMapping(value="lisaaKysymys", method=RequestMethod.GET)
+	public String getCreateFormKysymys(Model model, @RequestParam(value="kyselyId", required=false) int kyselyId) {
+		Kysymys kysymys = new Kysymys();
+		model.addAttribute("kysymys", kysymys);
+		return "/addkysymys";
 	}
 	
-	@RequestMapping(value="uusiKysely", method=RequestMethod.POST)
+	@RequestMapping(value="/uusi", method=RequestMethod.POST)
 	public String createKysely(@ModelAttribute(value="kysely") Kysely kysely, Model model) {
 		daoKysely.kyselySave(kysely);
 		List<Kysely> kyselyt = daoKysely.kyselyGetAll();
 		model.addAttribute("kyselyt", kyselyt);
-		return "/list";
+		return "list";
 	}
 	
-	@RequestMapping(value="uusiKysymys", method=RequestMethod.POST)
-	public String createKysymys(@ModelAttribute(value="kysymys") Kysely kysely, Model model){
-		int kyselyId = kysely.getKyselyId();
-		Kysymys kysymys = kysely.getKysymykset().get(0);
-		daoKysymys.kysymysSave(kyselyId,kysymys);
-		List<Kysely> kysymykset = daoKysymys.kysymysGetAll(kyselyId);
+	@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
+	public String createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys, Model model){
+		daoKysymys.kysymysSave(kysymys);
+		List<Kysymys> kysymykset = daoKysymys.kysymysGetAll(kysymys.getKyselyId());
 		model.addAttribute("kysymykset", kysymykset);
-		return "/list";
-		
+		return "/kysymysList";
 	}
 	
 	@RequestMapping(value="uusiVastaus", method=RequestMethod.POST)
