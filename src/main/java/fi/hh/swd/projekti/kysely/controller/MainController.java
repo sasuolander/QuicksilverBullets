@@ -99,6 +99,19 @@ public class MainController {
 		return "/list";
 	}
 	
+
+	@RequestMapping(value="kysymykset", method = RequestMethod.GET)
+	public String getAllKysymykset(Model model) {
+		List<Kysely> kysymykset2 = daoKysymys.kysymysGetAll(1);
+		List<Kysymys> kysymykset = null;
+		Kysely kysely;
+		for (int i = 0; i < kysymykset2.size(); i++) {
+			kysely = kysymykset2.get(i);
+			kysymykset = kysely.getKysymykset();
+		}
+		model.addAttribute("kysymykset", kysymykset);
+		return "/listKysymykset";
+  
 	@RequestMapping(value="listaVastaukset", method = RequestMethod.GET)
 	public String getAllVastaus(Model model) {
 		//List<Vastaus> vastaukset = new ArrayList<Vastaus>();
@@ -108,7 +121,7 @@ public class MainController {
 		//List<Kysely> KyselyList= daoKysely.kyselyGetAll();
 		
 		/*for (int i=0;i< KyselyList.size();i++){
-//T‰m‰ saattaa toimia mutta ei ole testattu	List<Kysely> kysymyksetvali=daoKysymys.kysymysGetAll(i+1); 
+//T√§m√§ saattaa toimia mutta ei ole testattu	List<Kysely> kysymyksetvali=daoKysymys.kysymysGetAll(i+1); 
 			kysymykset.addAll(kysymyksetvali);
 			for (int v =0;v<kysymykset.get(0).getKysymykset().size();v++){
 				Kysymys kysymys= kysymykset.get(0).getKysymykset().get(v);
@@ -135,4 +148,4 @@ public class MainController {
 		List<Kysely> kyselytjson = daoKysely.kyselyGetAll();
 		return kyselytjson;
 	}
-}
+  }
