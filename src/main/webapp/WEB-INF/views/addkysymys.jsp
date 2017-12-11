@@ -20,7 +20,7 @@
 				
 					<form:label path="kyselyId">KyselyId</form:label><br/>
 					<!--<spring:bind path="kysely.kyselyiD">-->
-					<form:input path="kyselyId" value="${param.kyselyId}"/>
+					<form:input path="KyselyId" value="${param.KyselyId}"/>
 					<!--</spring:bind>-->
 				</p>
 				<p>
