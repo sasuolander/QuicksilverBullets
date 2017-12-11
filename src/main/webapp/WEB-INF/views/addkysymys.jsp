@@ -16,6 +16,10 @@
 		  	<fieldset>		
 				<legend>Kysymys</legend>
 				<p>
+					<form:label path="kyselyId">KyselyId</form:label><br/>
+					<form:input path="kyselyId" value="${param.kyselyId}"/>
+				</p>
+				<p>
 					<form:label	path="kysymys">Kysymys: </form:label><br/>
 					<form:input path="kysymys"/>		
 				</p>

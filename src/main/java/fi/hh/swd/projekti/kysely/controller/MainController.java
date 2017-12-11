@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.hh.swd.projekti.kysely.bean.Kysely;
@@ -24,7 +25,9 @@ public class MainController {
 
 	@Inject
 	private KyselyDAO daoKysely;
+	@Inject
 	private KysymysDAO daoKysymys;
+	@Inject
 	private VastausDAO daoVastaus;
 	
 	public KyselyDAO getKysely() {
@@ -57,21 +60,21 @@ public class MainController {
 		kyselyBasic.setKyselyName("Input name");
 		kyselyBasic.setKyselyDesc("Input description");
 		model.addAttribute("kysely", kyselyBasic);
-		return "/form";
+		return "form";
 	}
 	@RequestMapping(value="lisaaKysymys", method=RequestMethod.GET)
-	public String getCreateFormKysymys(Model model) {
+	public String getCreateFormKysymys(Model model, @RequestParam(value="kyselyId", required=false) int kyselyId) {
 		Kysymys kysymys = new Kysymys();
 		model.addAttribute("kysymys", kysymys);
 		return "/addkysymys";
 	}
 	
-	@RequestMapping(value="uusiKysely", method=RequestMethod.POST)
+	@RequestMapping(value="/uusi", method=RequestMethod.POST)
 	public String createKysely(@ModelAttribute(value="kysely") Kysely kysely, Model model) {
 		daoKysely.kyselySave(kysely);
 		List<Kysely> kyselyt = daoKysely.kyselyGetAll();
 		model.addAttribute("kyselyt", kyselyt);
-		return "forward:lisaaKysymys";
+		return "list";
 	}
 	
 	@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
