@@ -24,7 +24,9 @@ public class MainController {
 
 	@Inject
 	private KyselyDAO daoKysely;
+	@Inject
 	private KysymysDAO daoKysymys;
+	@Inject
 	private VastausDAO daoVastaus;
 	
 	public KyselyDAO getKysely() {
@@ -95,6 +97,19 @@ public class MainController {
 		List<Kysely> kyselyt = daoKysely.kyselyGetAll();
 		model.addAttribute("kyselyt", kyselyt);
 		return "/list";
+	}
+	
+	@RequestMapping(value="kysymykset", method = RequestMethod.GET)
+	public String getAllKysymykset(Model model) {
+		List<Kysely> kysymykset2 = daoKysymys.kysymysGetAll(1);
+		List<Kysymys> kysymykset = null;
+		Kysely kysely;
+		for (int i = 0; i < kysymykset2.size(); i++) {
+			kysely = kysymykset2.get(i);
+			kysymykset = kysely.getKysymykset();
+		}
+		model.addAttribute("kysymykset", kysymykset);
+		return "/listKysymykset";
 	}
 	
 	@RequestMapping(value="lista.json", method=RequestMethod.GET)
