@@ -7,11 +7,13 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import fi.hh.swd.projekti.kysely.bean.Kysely;
 import fi.hh.swd.projekti.kysely.bean.Kysymys;
@@ -79,11 +81,11 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
-	public String createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys, Model model){
-		daoKysymys.kysymysSave(kysymys);
-		List<Kysymys> kysymykset = daoKysymys.kysymysGetAll(kysymys.getKyselyId());
-		model.addAttribute("kysymykset", kysymykset);
-		return "/kysymysList";
+	public ModelAndView createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys,@ModelAttribute(value="kysely") Kysely kysely,BindingResult kysely2,  Model model){
+		int kyselyId=kysely.getKyselyId();
+		daoKysymys.kysymysSave(kyselyId,kysymys);
+		return new ModelAndView("redirect:/kysymykset");
+		//return "/kysymysList";
 	}
 	
 	@RequestMapping(value="uusiVastaus", method=RequestMethod.POST)
@@ -116,6 +118,7 @@ public class MainController {
 		}
 		model.addAttribute("kysymykset", kysymykset);
 		return "/listKysymykset";
+		}
   
 	@RequestMapping(value="listaVastaukset", method = RequestMethod.GET)
 	public String getAllVastaus(Model model) {
