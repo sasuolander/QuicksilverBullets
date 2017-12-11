@@ -53,7 +53,6 @@ public class MainController {
 		this.daoVastaus = daoVastaus;
 	}
 	
-	
 	@RequestMapping(value="uusi", method=RequestMethod.GET)
 	public String getCreateForm(Model model) {
 		Kysely kyselyBasic = new Kysely();
@@ -106,11 +105,10 @@ public class MainController {
 		//List<Integer> kysymysIdList =new ArrayList<Integer>();
 		//List<Kysely> kysymykset = new ArrayList<Kysely>();
 		
-		
 		//List<Kysely> KyselyList= daoKysely.kyselyGetAll();
 		
 		/*for (int i=0;i< KyselyList.size();i++){
-//null point error?!!	List<Kysely> kysymyksetvali=daoKysymys.kysymysGetAll(i+1); 
+//Tämä saattaa toimia mutta ei ole testattu	List<Kysely> kysymyksetvali=daoKysymys.kysymysGetAll(i+1); 
 			kysymykset.addAll(kysymyksetvali);
 			for (int v =0;v<kysymykset.get(0).getKysymykset().size();v++){
 				Kysymys kysymys= kysymykset.get(0).getKysymykset().get(v);
@@ -126,7 +124,6 @@ public class MainController {
 		//List<Kysymys> b = kysymykset.get(0).getKysymykset();
 		//Kysymys c = kysymykset.get(0).getKysymykset().get(0);
 		
-		
 		List<Vastaus> vastaukset2=daoVastaus.vastausGetAllObject();
 		
 		model.addAttribute("vastauksetObject", vastaukset2);
@@ -138,6 +135,4 @@ public class MainController {
 		List<Kysely> kyselytjson = daoKysely.kyselyGetAll();
 		return kyselytjson;
 	}
-	
-
 }

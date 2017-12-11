@@ -57,15 +57,12 @@ public class VastausDAO {
 		return vastaukset;
 	}
 	
-	
 	public List<Vastaus> vastausGetAllObject( ) {
 		String sql = "SELECT vastausId, vastaus FROM vastaus";
 		VastausObjectRowMapper mapper = new VastausObjectRowMapper();
 		List<Vastaus> vastaukset = jdbcTemplate.query(sql, mapper);
 		return vastaukset;
 	}
-	
-	
 	
 	public Kysymys vastausGetOne( int vastausId ) {
 		String sql = "	SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE vastausId = ?";
@@ -74,7 +71,4 @@ public class VastausDAO {
 		Kysymys vastaus = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return vastaus;
 	}
-	
-	
-	
 }
