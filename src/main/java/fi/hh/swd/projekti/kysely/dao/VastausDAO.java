@@ -14,6 +14,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import fi.hh.swd.projekti.kysely.bean.Kysymys;
 import fi.hh.swd.projekti.kysely.bean.Vastaus;
 
 @Repository
@@ -30,10 +31,9 @@ public class VastausDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-public void vastausSave(Vastaus vastaus) {
+	public void vastausSave(final int kysymysId,Vastaus vastaus) {
 		final String sql = "INSERT INTO vastaus (vastaus, kysymysId) values(?,?)";
 		final String vastauss = vastaus.getVastaus();
-		final int kysymysId = vastaus.getKysymysId();
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
@@ -49,20 +49,26 @@ public void vastausSave(Vastaus vastaus) {
 	}
 
 	//Tätä muutan(poistin id parametrin, muutin sql lausetta)
-	public List<Vastaus> vastausGetAll( int kysymysId) {
+	public List<Kysymys> vastausGetAll( int kysymysId) {
 		String sql = "SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE kysymysId = ?";
 		Object [] parametrit = new Object [] {kysymysId};
-		RowMapper<Vastaus> mapper = new VastausRowMapper();
-		List<Vastaus> vastaukset = jdbcTemplate.query(sql, parametrit, mapper);
+		VastausResultSetExtractor mapper = new VastausResultSetExtractor();
+		List<Kysymys> vastaukset = jdbcTemplate.query(sql, parametrit, mapper);
 		return vastaukset;
 	}
 	
-	public Vastaus vastausGetOne( int vastausId ) {
-		String sql = "SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE vastausId = ?";
+	public List<Vastaus> vastausGetAllObject( ) {
+		String sql = "SELECT vastausId, vastaus FROM vastaus";
+		VastausObjectRowMapper mapper = new VastausObjectRowMapper();
+		List<Vastaus> vastaukset = jdbcTemplate.query(sql, mapper);
+		return vastaukset;
+	}
+	
+	public Kysymys vastausGetOne( int vastausId ) {
+		String sql = "	SELECT vastausId, vastaus, kysymysId FROM vastaus WHERE vastausId = ?";
 		Object[] parametrit = new Object[] { vastausId };
-		RowMapper<Vastaus> mapper = new VastausRowMapper();
-		Vastaus vastaus = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		RowMapper<Kysymys> mapper = new VastausRowMapper();
+		Kysymys vastaus = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return vastaus;
 	}
-
 }

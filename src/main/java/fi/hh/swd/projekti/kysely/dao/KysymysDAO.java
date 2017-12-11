@@ -3,18 +3,23 @@ package fi.hh.swd.projekti.kysely.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import fi.hh.swd.projekti.kysely.bean.Kysely;
 import fi.hh.swd.projekti.kysely.bean.Kysymys;
+import fi.hh.swd.projekti.kysely.bean.Valinta;
+import fi.hh.swd.projekti.kysely.dao.KysymysResultSetExtractor;
 
 @Repository
 public class KysymysDAO {
@@ -30,18 +35,21 @@ public class KysymysDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-public void kysymysSave(Kysymys kysymys) {
-		final String sql = "INSERT INTO kysymys (kysymys, kyselyId, kysymysType) values(?,?,?)";
-		final String kysymyss = kysymys.getKysymys();
-		final int kyselyId = kysymys.getKyselyId();
-		final String kysymysType = kysymys.getKysymysType();
+
+public void kysymysSave(final int kyselyId, Kysymys kysymys) {
+		final String sql = "INSERT INTO kysymys (kysymys, kyselyId,kysymysType) values(?,?,?)";
+		List<Kysymys>kysymykset= new ArrayList();
+		kysymykset.add(kysymys);
+		Kysely kysely =  new Kysely(kyselyId,kysymykset);
+		final String kysymysName= kysely.getKysymykset().get(0).getKysymys();
+		final String kysymysType= kysely.getKysymykset().get(0).getKysymysType();
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(
 					Connection connection) throws SQLException {
 				PreparedStatement ps = connection.prepareStatement(sql,
 						new String[] { "kysymysId" });
-				ps.setString(1, kysymyss);
+				ps.setString(1, kysymysName);
 				ps.setInt(2, kyselyId);
 				ps.setString(3, kysymysType);
 				return ps;
@@ -51,20 +59,29 @@ public void kysymysSave(Kysymys kysymys) {
 	}
 
 	//Tätä muokkaan (poistin id parametrin, muutin sql lausetta)
-	public List<Kysymys> kysymysGetAll(int kyselyId) {
-		String sql = "SELECT kysymysId, kysymys, kyselyId, kysymysType FROM kysymys WHERE kyselyId = ?";
+
+	public List<Kysely> kysymysGetAll(int kyselyId) {
+		String sql = "SELECT ksm.kysymysId, ksm.kysymys, ksm.kyselyId, ksm.kysymysType, ksl.kyselyName, ksl.kyselyDesc FROM kysymys ksm JOIN kysely ksl ON ksm.kyselyId=ksl.kyselyId WHERE ksm.kyselyId = ?";
 		Object [] parametrit = new Object [] {kyselyId};
-		RowMapper<Kysymys> mapper = new KysymysRowMapper();
-		List<Kysymys> kysymykset = jdbcTemplate.query(sql, parametrit, mapper);
+		KysymysResultSetExtractor mapper = new KysymysResultSetExtractor();
+		List<Kysely> kysymykset = jdbcTemplate.query(sql, parametrit,mapper);
 		return kysymykset;
 	}
 	
-	public Kysymys kysymysGetOne( int kysymysId ) {
+	public Kysely kysymysGetOne( int kysymysId ) {
 		String sql = "SELECT kysymysId, kysymys, kyselyId, kysymysType FROM kysymys WHERE kysymysId = ?";
 		Object[] parametrit = new Object[] { kysymysId };
-		RowMapper<Kysymys> mapper = new KysymysRowMapper();
-		Kysymys kysymys = jdbcTemplate.queryForObject(sql, parametrit, mapper);
+		RowMapper<Kysely> mapper = new KysymysRowMapper();
+		Kysely kysymys = jdbcTemplate.queryForObject(sql, parametrit, mapper);
 		return kysymys;
+	}
+	
+	public List<Valinta> valintaGetAll( int kysymysId ) {
+		String sql = "SELECT valintaId, valintaName, kysymysId FROM valinta WHERE kysymysId = ?";
+		Object [] parametrit = new Object [] {kysymysId};
+		ValintaResultSetExtractor mapper = new ValintaResultSetExtractor();
+		List<Valinta> valinnat = jdbcTemplate.query(sql, parametrit, mapper);
+		return valinnat;
 	}
 
 }

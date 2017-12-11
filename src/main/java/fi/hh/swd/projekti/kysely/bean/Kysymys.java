@@ -1,12 +1,27 @@
 package fi.hh.swd.projekti.kysely.bean;
 
-public class Kysymys extends Kysely {
+import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+public class Kysymys  {
 	private int kysymysId;
 	private String kysymys;
 	private String kysymysType;
+	private List<Vastaus> vastaukset;
+	private List<Valinta> valinnat;
+
+	
+	
+	public void lisaa(Vastaus vastaus){
+		this.vastaukset.add(vastaus);
+	}
+	
+	public void lisaa(Valinta valinta) {
+		this.valinnat.add(valinta);
+	}
 	
 	public Kysymys() {
-		super.getKyselyId();
 		kysymysId = 0;
 		kysymys = null;
 		kysymysType = null;
@@ -19,6 +34,12 @@ public class Kysymys extends Kysely {
 		this.kysymys = kysymys;
 		this.kysymysType = kysymysType;
 		
+	}
+	
+	public Kysymys(int kysymysId,List<Vastaus> vastaukset) {
+		super();
+		this.kysymysId = kysymysId;
+		this.vastaukset = vastaukset;
 	}
 
 	public int getKysymysId() {
@@ -50,4 +71,20 @@ public class Kysymys extends Kysely {
 		this.kysymysType = kysymysType;
 	}
 	
+	public List<Vastaus> getVastaukset() {
+		return vastaukset;
+	}
+	
+	public void setVastaukset(List<Vastaus> vastaukset) {
+		this.vastaukset = vastaukset;
+	}
+
+	public List<Valinta> getValinnat() {
+		return valinnat;
+	}
+
+	public void setValinnat(List<Valinta> valinnat) {
+		this.valinnat = valinnat;
+	}
+
 }
