@@ -9,7 +9,7 @@
 <body>
 	<h1>Kyselykokeilu</h1>
 	<h3>Quicksilver Bullets</h3>
-	<p>T‰m‰ sovellus on testi, jolla pyrit‰‰n listaamaan ja tallettamaan kyselyit‰ 
+	<p>T√§m√§ sovellus on testi, jolla pyrit√§√§n listaamaan ja tallettamaan kyselyit√§ 
 	tietokannan avulla. </p>
 	<h3>Linkit:</h3>
 	<p>
@@ -18,6 +18,8 @@
 		<a href="kyselyt/lista">Listaa kyselyt</a>
 		<br>
 		<a href="kyselyt/kysymykset">Listaa kysymykset</a>
+		<br>
+		<a href="kyselyt/listaVastaukset">Listaa vastaukset</a>
 		<br>
 		<a href="api/kyselyt">hae jsonina kaikki kyselyt</a>
 		<br>
