@@ -1,5 +1,6 @@
 package fi.hh.swd.projekti.kysely.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,7 +25,9 @@ public class MainController {
 
 	@Inject
 	private KyselyDAO daoKysely;
+	@Inject
 	private KysymysDAO daoKysymys;
+	@Inject
 	private VastausDAO daoVastaus;
 	
 	public KyselyDAO getKysely() {
@@ -49,7 +52,6 @@ public class MainController {
 	public void setVastaus(VastausDAO daoVastaus) {
 		this.daoVastaus = daoVastaus;
 	}
-	
 	
 	@RequestMapping(value="uusi", method=RequestMethod.GET)
 	public String getCreateForm(Model model) {
@@ -97,11 +99,40 @@ public class MainController {
 		return "/list";
 	}
 	
+	@RequestMapping(value="listaVastaukset", method = RequestMethod.GET)
+	public String getAllVastaus(Model model) {
+		//List<Vastaus> vastaukset = new ArrayList<Vastaus>();
+		//List<Integer> kysymysIdList =new ArrayList<Integer>();
+		//List<Kysely> kysymykset = new ArrayList<Kysely>();
+		
+		//List<Kysely> KyselyList= daoKysely.kyselyGetAll();
+		
+		/*for (int i=0;i< KyselyList.size();i++){
+//Tämä saattaa toimia mutta ei ole testattu	List<Kysely> kysymyksetvali=daoKysymys.kysymysGetAll(i+1); 
+			kysymykset.addAll(kysymyksetvali);
+			for (int v =0;v<kysymykset.get(0).getKysymykset().size();v++){
+				Kysymys kysymys= kysymykset.get(0).getKysymykset().get(v);
+				int id =kysymys.getKysymysId();
+				kysymysIdList.add(id); 
+				} 
+		}
+		for (int i=0;i< kysymysIdList.size();i++){
+			List<Kysymys> vastausetVali = daoVastaus.vastausGetAll(i+1);
+			List<Vastaus>vastaukset2= vastausetVali.get(0).getVastaukset();
+			vastaukset.addAll(vastaukset2);}*/
+		//Kysely p = kysymykset.get(0);
+		//List<Kysymys> b = kysymykset.get(0).getKysymykset();
+		//Kysymys c = kysymykset.get(0).getKysymykset().get(0);
+		
+		List<Vastaus> vastaukset2=daoVastaus.vastausGetAllObject();
+		
+		model.addAttribute("vastauksetObject", vastaukset2);
+		return "/vastaukset";
+	}
+	
 	@RequestMapping(value="lista.json", method=RequestMethod.GET)
 	public @ResponseBody List<Kysely> haeKyselytjson(){
 		List<Kysely> kyselytjson = daoKysely.kyselyGetAll();
 		return kyselytjson;
 	}
-	
-
 }
