@@ -63,6 +63,12 @@ public class MainController {
 		model.addAttribute("kysely", kyselyBasic);
 		return "form";
 	}
+	
+	//
+	//Viltsu: Muokkasin tämän lisaaKysymys Getin sillei että ottaa mukaan tuolta list.jsp sivulta kyselyId:n 
+	//jota tarvitaan tuolla tietokannassa kysymys taulussa.
+	//
+	
 	@RequestMapping(value="lisaaKysymys", method=RequestMethod.GET)
 	public String getCreateFormKysymys(Model model, @RequestParam(value="kyselyId") int kyselyId) {
 		Kysymys kysymys = new Kysymys();
@@ -78,6 +84,11 @@ public class MainController {
 		model.addAttribute("kyselyt", kyselyt);
 		return "list";
 	}
+	
+	/*
+	 * Viltsu: muokkasin tätä lisaaKysymys POSTia myös sillei että tuo formin kohta kyselyId tulee mukaan tuohon
+	 * kysymysSave metodiin ja kysymysGetAll metodiin. Muokkauksen alla oli MainController, Kysymys bean, list.jsp ja addkysymys.jsp.
+	 */
 	
 	@RequestMapping(value="lisaaKysymys", method=RequestMethod.POST)
 	public String createKysymys(@ModelAttribute(value="kysymys") Kysymys kysymys, @RequestParam(value="kyselyId") int kyselyId, Model model){

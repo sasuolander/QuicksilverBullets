@@ -10,7 +10,7 @@ public class Kysymys  {
 	private String kysymysType;
 	private List<Vastaus> vastaukset;
 	private List<Valinta> valinnat;
-	private int kyselyId;
+	private int kyselyId;//Viltsu: tämä on uusi lisäys tuon kysymys lisäyksen johdosta. Samoin getit ja setit tälle.
 	
 	
 	public int getKyselyId() {

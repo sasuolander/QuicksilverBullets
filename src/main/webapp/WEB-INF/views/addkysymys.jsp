@@ -16,7 +16,9 @@
 		  	<fieldset>		
 				<legend>Kysymys</legend>
 				<p>
-					<form:label path="kyselyId">Jihuuuu</form:label><br>
+				<!-- Viltsu: ja täällä tuon kyselyId arvon tähän kohtaan formia näkyviin. Näytän sen sen takia että tiedämme
+				että se on siellä. -->
+					<form:label path="kyselyId">KyselyId</form:label><br>
 					<form:input path ="kyselyId"/>
 				</p>
 				<p>

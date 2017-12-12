@@ -21,7 +21,8 @@
 			</tr>
 			<tr>
 				<td><a href="lisaaKysymys?kyselyId=<c:out value='${kysely.kyselyId}'/>">Lis‰‰ kysymys</a>
-			
+				<!-- Viltsu: tuossa yl‰puolella on tapa jolla lis‰‰n muuttujan menem‰‰n controlleriin ja siit‰ eteenp‰in.
+				eli luon kyselyId muuttujan jolla on arvona kyselyId tuosta kysely listasta. -->
 				</td>
 			</tr>
 			
