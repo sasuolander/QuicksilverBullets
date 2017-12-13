@@ -19,10 +19,21 @@
 				<td><c:out value="${kysely.kyselyName}" default="-----" /></td>
 				<td><c:out value="${kysely.kyselyDesc}" default="-----" /></td>
 			</tr>
+			<tr>
+				<td><a href="lisaaKysymys?kyselyId=<c:out value='${kysely.kyselyId}'/>">Lis‰‰ kysymys</a>
+				<!-- Viltsu: tuossa yl‰puolella on tapa jolla lis‰‰n muuttujan menem‰‰n controlleriin ja siit‰ eteenp‰in.
+				eli luon kyselyId muuttujan jolla on arvona kyselyId tuosta kysely listasta. -->
+				</td>
+			</tr>
+			
 			</c:forEach>
 		</table>
+		
+		
 	</div>
+	
 	<p><a href="/Kysely/">Palaa alkuun</a></p>
+	
 </body>
 
 </html>
